@@ -3,14 +3,14 @@
 AI-powered English speaking evaluation system. Users speak on a topic, and Gemini AI evaluates their **Grammar**, **Vocabulary**, and **Overall** communication, providing actionable improvement suggestions.
 
 ---
+<img width="2875" height="1650" alt="1001035232" src="https://github.com/user-attachments/assets/86d34afe-7f15-41d4-9c3f-86ce29732b95" />
+<img width="2686" height="1578" alt="1001035230" src="https://github.com/user-attachments/assets/640c5491-7b73-447d-83fd-8c42cb16c74e" />
+<img width="2857" height="1485" alt="1001035231" src="https://github.com/user-attachments/assets/1969d3e9-3595-47db-a331-2f0d7d6730c6" />
+<img width="2814" height="1622" alt="1001035233" src="https://github.com/user-attachments/assets/5574d26a-6704-4e7b-add0-264e73644a49" />
+<img width="2854" height="1625" alt="1001035228" src="https://github.com/user-attachments/assets/4118c827-e848-42bc-9795-1a1e409b649c" />
+<img width="2849" height="1538" alt="1001035229" src="https://github.com/user-attachments/assets/d00044d2-cbf3-40c8-9e7f-ea943992fc47" />
 
 ##  Project Structure
-<img width="2849" height="1538" alt="1001035229" src="https://github.com/user-attachments/assets/67e06a39-cfcd-42d7-9350-5ab2bc08ea38" />
-<img width="2854" height="1625" alt="1001035228" src="https://github.com/user-attachments/assets/1c2e34c5-621f-44b5-8275-77fbcffe56e6" />
-<img width="2814" height="1622" alt="1001035233" src="https://github.com/user-attachments/assets/c3fc541c-b4a3-44e8-a042-f94b1971f89c" />
-<img width="2857" height="1485" alt="1001035231" src="https://github.com/user-attachments/assets/71c7de48-5504-4dd8-9f02-f811b1573d1a" />
-<img width="2686" height="1578" alt="1001035230" src="https://github.com/user-attachments/assets/bdf314d4-5f9a-4a05-8d5d-49371a51a20b" />
-<img width="2875" height="1650" alt="1001035232" src="https://github.com/user-attachments/assets/4e8217e2-5f40-48e7-adf1-f18229b2efb4" />
 
 ```
 fluentfeedassgn/
@@ -26,8 +26,9 @@ fluentfeedassgn/
 │   └── users.json          # Local user store (auto-created)
 │
 ├
-└── README.md               # This file
-```
+└── README.md               
+
+
 
 ---
 
