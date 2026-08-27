@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FluentFeed — Speaking Evaluation Platform</title>
+  <meta name="description" content="AI-powered speaking evaluation. Get instant feedback on your grammar, vocabulary, and communication skills." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  NAVBAR (hidden on auth page)                  -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <nav id="navbar" class="hidden" aria-label="Main navigation">
+    <div class="navbar-logo">Fluent<span>Feed</span></div>
+    <div class="navbar-actions">
+      <div class="nav-tabs" role="tablist">
+        <button class="nav-tab active" data-page="dashboard" role="tab" id="tab-dashboard">Practice</button>
+        <button class="nav-tab" data-page="history" role="tab" id="tab-history">History</button>
+      </div>
+      <div class="user-avatar" id="user-avatar" title="Account" aria-label="User account">U</div>
+      <button class="btn btn-sm btn-danger" id="btn-logout" aria-label="Sign out">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  PAGE: AUTH                                     -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <main id="page-auth" class="page active" role="main">
+    <div class="auth-container fade-in">
+      <div class="auth-header">
+        <div class="auth-logo">FluentFeed</div>
+        <p class="auth-tagline">AI-powered speaking evaluation — speak, get scored, improve.</p>
+      </div>
+
+      <div class="glass-card auth-card">
+        <!-- Tabs -->
+        <div class="auth-tabs" role="tablist" aria-label="Authentication mode">
+          <div class="auth-tab active" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login" tabindex="0">Sign In</div>
+          <div class="auth-tab" id="tab-signup" role="tab" aria-selected="false" aria-controls="panel-signup" tabindex="0">Create Account</div>
+        </div>
+
+        <!-- Login Panel -->
+        <div id="panel-login" class="auth-form-panel active" role="tabpanel" aria-labelledby="tab-login">
+          <div id="login-error" class="alert alert-error hidden" role="alert"></div>
+          <div class="form-group">
+            <label class="form-label" for="login-email">Email Address</label>
+            <input class="form-input" type="email" id="login-email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="login-password">Password</label>
+            <input class="form-input" type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required />
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-login" style="width:100%">Sign In</button>
+        </div>
+
+        <!-- Signup Panel -->
+        <div id="panel-signup" class="auth-form-panel" role="tabpanel" aria-labelledby="tab-signup">
+          <div id="signup-error" class="alert alert-error hidden" role="alert"></div>
+          <div class="form-group">
+            <label class="form-label" for="signup-name">Full Name</label>
+            <input class="form-input" type="text" id="signup-name" placeholder="Alex Johnson" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-email">Email Address</label>
+            <input class="form-input" type="email" id="signup-email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-password">Password</label>
+            <input class="form-input" type="password" id="signup-password" placeholder="Min. 6 characters" autocomplete="new-password" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-confirm">Confirm Password</label>
+            <input class="form-input" type="password" id="signup-confirm" placeholder="Repeat your password" autocomplete="new-password" required />
+          </div>
+          <button class="btn btn-primary btn-lg" id="btn-signup" style="width:100%">Create Account</button>
+          <p class="auth-terms">By creating an account, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  PAGE: DASHBOARD                                -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="page-dashboard" class="page">
+    <div class="dashboard-hero fade-in">
+      <p class="dashboard-greeting">Welcome back, <span id="user-name-greeting">Learner</span> 👋</p>
+      <h1 class="dashboard-title">Practice Your Speaking</h1>
+      <p class="dashboard-subtitle">Record yourself on today's topic and get instant AI-powered feedback on your English.</p>
+    </div>
+
+    <!-- Topic Card -->
+    <section class="topic-section" aria-label="Today's topic">
+      <div class="glass-card topic-card">
+        <div class="topic-label">📌 Today's Speaking Topic</div>
+        <p class="topic-text" id="topic-display">Loading topic...</p>
+        <div class="topic-meta">
+          <span class="topic-meta-item">🎯 <span>100–200 words</span></span>
+          <span class="topic-meta-item">⏱ <span>60–90 seconds</span></span>
+          <button class="btn btn-sm btn-secondary refresh-topic-btn" id="btn-new-topic" aria-label="Get a new topic">🔄 New Topic</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recording Section -->
+    <section class="recording-section" aria-label="Voice recorder">
+      <div class="mic-container">
+        <div class="mic-button-wrap">
+          <button class="mic-button" id="mic-button" aria-label="Start recording" aria-pressed="false">
+            🎙
+          </button>
+          <!-- Ripple rings — shown only while recording -->
+          <div class="mic-ripple hidden" id="mic-ripple-1"></div>
+          <div class="mic-ripple hidden" id="mic-ripple-2"></div>
+          <div class="mic-ripple hidden" id="mic-ripple-3"></div>
+        </div>
+
+        <div class="mic-status">
+          <p class="mic-status-text" id="mic-status-text">Tap to start recording</p>
+          <div class="mic-timer" id="mic-timer" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Transcript -->
+      <div class="glass-card transcript-card" aria-label="Your speech transcript">
+        <div class="transcript-label">📝 Your Speech</div>
+        <p class="transcript-text" id="transcript-display">Your spoken words will appear here in real time as you speak…</p>
+        <div class="word-count" aria-live="polite">
+          <span class="word-count-badge" id="word-count-badge">0 words</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="evaluate-actions">
+        <button class="btn btn-secondary" id="btn-clear" disabled aria-label="Clear transcript">🗑 Clear</button>
+        <button class="btn btn-primary btn-lg" id="btn-evaluate" disabled aria-label="Evaluate my speech">
+          ✨ Evaluate My Speech
+        </button>
+      </div>
+
+      <div id="dashboard-error" class="alert alert-error hidden" role="alert" style="margin-top:16px;"></div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  PAGE: RESULTS                                  -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="page-results" class="page">
+    <div class="results-header fade-in">
+      <h2 class="results-title">Your Evaluation Results ✨</h2>
+      <p class="results-subtitle" id="results-topic-display"></p>
+    </div>
+
+    <div class="results-container">
+
+      <!-- Score Cards -->
+      <div class="scores-grid stagger" aria-label="Scores">
+        <!-- Grammar -->
+        <div class="glass-card score-card grammar" aria-label="Grammar score">
+          <div class="score-label">Grammar</div>
+          <div class="score-ring" aria-hidden="true">
+            <svg viewBox="0 0 90 90">
+              <circle class="score-ring-bg" cx="45" cy="45" r="35"/>
+              <circle class="score-ring-fill" id="ring-grammar" cx="45" cy="45" r="35"/>
+            </svg>
+            <div class="score-value" id="val-grammar">–</div>
+          </div>
+          <div class="score-desc" id="desc-grammar">–</div>
+        </div>
+
+        <!-- Vocabulary -->
+        <div class="glass-card score-card vocabulary" aria-label="Vocabulary score">
+          <div class="score-label">Vocabulary</div>
+          <div class="score-ring" aria-hidden="true">
+            <svg viewBox="0 0 90 90">
+              <circle class="score-ring-bg" cx="45" cy="45" r="35"/>
+              <circle class="score-ring-fill" id="ring-vocabulary" cx="45" cy="45" r="35"/>
+            </svg>
+            <div class="score-value" id="val-vocabulary">–</div>
+          </div>
+          <div class="score-desc" id="desc-vocabulary">–</div>
+        </div>
+
+        <!-- Overall -->
+        <div class="glass-card score-card overall" aria-label="Overall score">
+          <div class="score-label">Overall</div>
+          <div class="score-ring" aria-hidden="true">
+            <svg viewBox="0 0 90 90">
+              <circle class="score-ring-bg" cx="45" cy="45" r="35"/>
+              <circle class="score-ring-fill" id="ring-overall" cx="45" cy="45" r="35"/>
+            </svg>
+            <div class="score-value" id="val-overall">–</div>
+          </div>
+          <div class="score-desc" id="desc-overall">–</div>
+        </div>
+      </div>
+
+      <!-- Detail Cards -->
+      <div class="details-grid stagger">
+        <div class="glass-card detail-card">
+          <div class="detail-card-title">
+            <div class="detail-icon blue">📖</div>
+            Grammar Analysis
+          </div>
+          <p class="detail-text" id="detail-grammar">–</p>
+        </div>
+
+        <div class="glass-card detail-card">
+          <div class="detail-card-title">
+            <div class="detail-icon purple">💡</div>
+            Vocabulary Analysis
+          </div>
+          <p class="detail-text" id="detail-vocabulary">–</p>
+        </div>
+      </div>
+
+      <!-- Transcript -->
+      <div class="glass-card result-transcript-card fade-in">
+        <div class="detail-card-title" style="margin-bottom:12px;">
+          <div class="detail-icon blue">📝</div>
+          Your Response
+        </div>
+        <p class="result-transcript-text" id="result-transcript">–</p>
+      </div>
+
+      <!-- Suggestions -->
+      <div class="glass-card suggestions-card fade-in" aria-label="Improvement suggestions">
+        <div class="suggestions-title">
+          <div class="suggestions-icon">💡</div>
+          Suggestions for Improvement
+        </div>
+        <ul class="suggestions-list" id="suggestions-list" aria-label="List of suggestions"></ul>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="results-actions">
+        <button class="btn btn-secondary btn-lg" id="btn-practice-again" aria-label="Practice again">🔄 Practice Again</button>
+        <button class="btn btn-primary btn-lg" id="btn-new-topic-results" aria-label="Try a new topic">🎯 New Topic</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  PAGE: HISTORY                                  -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="page-history" class="page">
+    <div class="history-header fade-in">
+      <h2 style="font-size:2rem; font-weight:800; margin-bottom:8px;">Your Progress 📈</h2>
+      <p style="color:var(--text-secondary);">Review past evaluations and track your improvement over time.</p>
+    </div>
+    <div class="history-container" id="history-list" aria-label="Evaluation history">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  LOADING OVERLAY                                -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="loading-overlay" role="status" aria-live="polite" aria-label="Loading">
+    <div class="loader-ring" aria-hidden="true"></div>
+    <p class="loader-text" id="loader-text">Analyzing your speech…</p>
+    <p class="loader-subtext">Gemini AI is evaluating your grammar and vocabulary</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!--  TOAST CONTAINER                                -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div id="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

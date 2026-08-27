@@ -1,0 +1,8 @@
+# .env files — secret config
+backend/.env
+
+# Dependencies
+backend/node_modules/
+
+# User data
+backend/users.json
