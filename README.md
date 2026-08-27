@@ -4,7 +4,13 @@ AI-powered English speaking evaluation system. Users speak on a topic, and Gemin
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
+<img width="2849" height="1538" alt="1001035229" src="https://github.com/user-attachments/assets/67e06a39-cfcd-42d7-9350-5ab2bc08ea38" />
+<img width="2854" height="1625" alt="1001035228" src="https://github.com/user-attachments/assets/1c2e34c5-621f-44b5-8275-77fbcffe56e6" />
+<img width="2814" height="1622" alt="1001035233" src="https://github.com/user-attachments/assets/c3fc541c-b4a3-44e8-a042-f94b1971f89c" />
+<img width="2857" height="1485" alt="1001035231" src="https://github.com/user-attachments/assets/71c7de48-5504-4dd8-9f02-f811b1573d1a" />
+<img width="2686" height="1578" alt="1001035230" src="https://github.com/user-attachments/assets/bdf314d4-5f9a-4a05-8d5d-49371a51a20b" />
+<img width="2875" height="1650" alt="1001035232" src="https://github.com/user-attachments/assets/4e8217e2-5f40-48e7-adf1-f18229b2efb4" />
 
 ```
 fluentfeedassgn/
@@ -25,7 +31,7 @@ fluentfeedassgn/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Backend Setup
 
@@ -52,7 +58,7 @@ Open `frontend/index.html` directly in **Google Chrome** (required for Web Speec
 
 ---
 
-## 🔑 Features
+##  Features
 
 - **Auth**: Register / Login stored securely in backend `users.json`
 - **Speech Recognition**: Browser Web Speech API (Chrome recommended)
@@ -63,7 +69,7 @@ Open `frontend/index.html` directly in **Google Chrome** (required for Web Speec
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer     | Technology              |
 |-----------|-------------------------|
@@ -75,7 +81,7 @@ Open `frontend/index.html` directly in **Google Chrome** (required for Web Speec
 
 ---
 
-## ⚙️ API Endpoints
+## API Endpoints
 
 | Method | Route       | Description              |
 |--------|-------------|--------------------------|
@@ -84,5 +90,6 @@ Open `frontend/index.html` directly in **Google Chrome** (required for Web Speec
 | POST   | /evaluate   | Evaluate speech via Gemini|
 
 ---
+
 
 
