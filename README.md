@@ -19,7 +19,7 @@ fluentfeedassgn/
 │   ├── .env                # Secret config (API key, port) — NOT committed
 │   └── users.json          # Local user store (auto-created)
 │
-├── technical-document.html # Full system architecture & limitations report
+├
 └── README.md               # This file
 ```
 
@@ -85,9 +85,4 @@ Open `frontend/index.html` directly in **Google Chrome** (required for Web Speec
 
 ---
 
-## 📄 Technical Document
 
-Open `technical-document.html` in any browser for the full system design report covering:
-- Limitations of direct Gemini API usage
-- Scalable architecture for 10,000 evaluations/day
-- Cost analysis, caching strategy, and deployment plan
